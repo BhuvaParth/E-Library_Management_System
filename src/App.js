@@ -67,7 +67,7 @@ function App() {
             element={isAuthenticated ? <AddBook /> : <Navigate to="/login" />}
           />
           <Route
-            path="/edit-book"
+            path="/edit-book/:id"
             element={isAuthenticated ? <EditBook /> : <Navigate to="/login" />}
           />
           <Route path="*" element={<Navigate to="/login" />} />

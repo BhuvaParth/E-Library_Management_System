@@ -3,15 +3,20 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function About() {
   const location = useLocation();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const { book } = location.state || {};
 
   if (!book) {
     return <p>No book data available.</p>;
   }
 
+  const handleEdit = () => {
+    navigate(`/edit-book/${book.id}`, { state: book });
+  };
   const handleDelete = async () => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this book?");
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this book?"
+    );
     if (confirmDelete) {
       try {
         const response = await fetch(`http://localhost:3000/books/${book.id}`, {
@@ -19,7 +24,7 @@ export default function About() {
         });
         if (response.ok) {
           alert("Book deleted successfully.");
-          navigate("/"); 
+          navigate("/");
         } else {
           alert("Failed to delete the book. Please try again.");
         }
@@ -34,11 +39,14 @@ export default function About() {
     <>
       <div className="w-full bg-white p-6">
         <div className="mb-4 flex justify-end gap-3">
-          <button className="bg-blue-700 text-white font-medium py-[6px] px-4 rounded-md shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-opacity-50">
-            <Link to="/edit-book" state={{ book }}>Edit</Link>
+          <button
+            className="bg-blue-700 text-white font-medium py-[6px] px-4 rounded-md shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-opacity-50"
+            onClick={handleEdit}
+          >
+            Edit
           </button>
           <button
-            onClick={handleDelete} 
+            onClick={handleDelete}
             className="bg-rose-600 text-white font-medium py-[6px] px-4 rounded-md shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-opacity-50"
           >
             Delete
@@ -56,7 +64,7 @@ export default function About() {
             <h2 className="text-3xl font-bold mb-4">
               {book.title || "Page Title"}
             </h2>
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-5">
               <p className="mt-4">{book.description}</p>
               <p className="text-gray-600 mb-1">Author: {book.author}</p>
               <p className="text-gray-600 mb-1">Genre: {book.genre}</p>
