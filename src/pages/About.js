@@ -1,7 +1,50 @@
-import React from 'react'
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 export default function About() {
+  const location = useLocation();
+  const { book } = location.state || {};
+
+  if (!book) {
+    return <p>No book data available.</p>;
+  }
+
   return (
-    <div>About</div>
-  )
+    <>
+      <div className="w-full bg-white p-6">
+        <div className="mb-4 flex justify-end gap-3">
+          <button className="bg-blue-700 text-white font-medium py-[6px] px-4 rounded-md shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-opacity-50">
+            Edit
+          </button>
+          <button className="bg-rose-600 text-white font-medium py-[6px] px-4 rounded-md shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-opacity-50">
+            Delete
+          </button>
+        </div>
+        <div className="flex flex-col items-center">
+          <div className="flex justify-center mb-4">
+            <img
+              src={book.imageUrl || "https://via.placeholder.com/1200x500"}
+              alt={book.title || "Sample Image"}
+              className="max-h-[500px] object-cover rounded-lg mb-4"
+            />
+          </div>
+          <div className="flex flex-col justify-center w-3/4 mb-4">
+            <h2 className="text-3xl font-bold mb-4">
+              {book.title || "Page Title"}
+            </h2>
+            <div className="flex flex-col gap-10">
+              <p className="mt-4">{book.description}ss</p>{" "}
+              <p className="text-gray-600 mb-1">Author: {book.author}</p>
+              <p className="text-gray-600 mb-1">Genre: {book.genre}</p>
+              <p className="text-gray-600 mb-1">ISBN : {book.isbn}</p>
+              <p className="text-gray-600 mb-1">
+                Publication Date: {book.publicationDate}
+              </p>
+              <p className="font-semibold">Subject: {book.subject}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }

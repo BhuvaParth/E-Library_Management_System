@@ -1,33 +1,51 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 export default function Card() {
   const [books, setBooks] = useState([]);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
-    fetch("http://localhost:3000/cardData") 
+    fetch("http://localhost:3000/books")
       .then((response) => response.json())
-      .then((data) => setBooks(data))
+      .then((data) => {
+        const updatedBooks = data.map((book) => ({
+          ...book,
+          isBorrowed: false,
+        }));
+        setBooks(updatedBooks);
+      })
       .catch((error) => console.error("Error fetching the data:", error));
   }, []);
 
-  return (
-    <>
-      <div className="max-w-screen-xl mx-auto px-4">
-        <div className="flex justify-center mb-4">
-          <input
-            type="text"
-            placeholder="Search by title, location, date, or type..."
-            className="border-2 border-gray-800 my-12 rounded-md p-2 w-full max-w-lg"
-          />
-        </div>
+  const handleCardClick = (book) => {
+    navigate("/about", { state: { book } }); 
+  };
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {books.map((book) => (
-            <Link
-              to={`/book/${book.id}`}
+  const handleBorrowReturn = (id) => {
+    setBooks((prevBooks) =>
+      prevBooks.map((book) =>
+        book.id === id ? { ...book, isBorrowed: !book.isBorrowed } : book
+      )
+    );
+  };
+
+  return (
+    <div className="max-w-screen-xl mx-auto px-4 cursor-pointer">
+      <div className="flex justify-center mb-4">
+        <input
+          type="text"
+          placeholder="Search by title, location, date, or type..."
+          className="border-2 border-gray-800 my-12 rounded-md p-2 w-full max-w-lg"
+        />
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {books.length > 0 ? (
+          books.map((book) => (
+            <div
               key={book.id}
               className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl"
+              onClick={() => handleCardClick(book)}
             >
               <img
                 src={book.imageUrl}
@@ -43,10 +61,25 @@ export default function Card() {
                 </p>
                 <p className="font-semibold">Subject: {book.subject}</p>
               </div>
-            </Link>
-          ))}
-        </div>
+              <div className="p-4">
+                <button
+                  className={`w-full ${
+                    book.isBorrowed ? "bg-red-500" : "bg-blue-500"
+                  } text-white font-semibold py-2 rounded-md hover:bg-opacity-75`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleBorrowReturn(book.id);
+                  }}
+                >
+                  {book.isBorrowed ? "Return" : "Borrow"}
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-center text-gray-600">No books available</p>
+        )}
       </div>
-    </>
+    </div>
   );
 }

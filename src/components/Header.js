@@ -12,8 +12,14 @@ export default function Header({ onLogout }) {
         </div>
 
         <div className="hidden md:flex items-center space-x-4">
-          <button className="hover:text-gray-400">Home</button>
-          <button className="hover:text-gray-400">Add Book</button>
+          <button className="hover:text-gray-400">
+            {" "}
+            <Link to="/home">Home</Link>
+          </button>
+          <button className="hover:text-gray-400">
+            {" "}
+            <Link to="/add-book">Add Book</Link>
+          </button>
         </div>
 
         <div className="md:hidden">
@@ -41,10 +47,10 @@ export default function Header({ onLogout }) {
         {menuOpen && (
           <div className="absolute top-16 left-0 w-full bg-gray-800 text-white rounded-md shadow-lg md:hidden z-50">
             <button className="block px-4 py-2 hover:bg-gray-700 w-full text-left">
-              Home
+              <Link to="/home">Home</Link>
             </button>
             <button className="block px-4 py-2 hover:bg-gray-700 w-full text-left">
-              Add Book
+              <Link to="/add-book">Add Book</Link>
             </button>
           </div>
         )}
