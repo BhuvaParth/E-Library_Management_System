@@ -1,22 +1,46 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function About() {
   const location = useLocation();
+  const navigate = useNavigate(); 
   const { book } = location.state || {};
 
   if (!book) {
     return <p>No book data available.</p>;
   }
 
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this book?");
+    if (confirmDelete) {
+      try {
+        const response = await fetch(`http://localhost:3000/books/${book.id}`, {
+          method: "DELETE",
+        });
+        if (response.ok) {
+          alert("Book deleted successfully.");
+          navigate("/"); 
+        } else {
+          alert("Failed to delete the book. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error deleting the book:", error);
+        alert("An error occurred while deleting the book.");
+      }
+    }
+  };
+
   return (
     <>
       <div className="w-full bg-white p-6">
         <div className="mb-4 flex justify-end gap-3">
           <button className="bg-blue-700 text-white font-medium py-[6px] px-4 rounded-md shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-opacity-50">
-            Edit
+            <Link to="/edit-book" state={{ book }}>Edit</Link>
           </button>
-          <button className="bg-rose-600 text-white font-medium py-[6px] px-4 rounded-md shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-opacity-50">
+          <button
+            onClick={handleDelete} 
+            className="bg-rose-600 text-white font-medium py-[6px] px-4 rounded-md shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-opacity-50"
+          >
             Delete
           </button>
         </div>
@@ -33,10 +57,10 @@ export default function About() {
               {book.title || "Page Title"}
             </h2>
             <div className="flex flex-col gap-10">
-              <p className="mt-4">{book.description}ss</p>{" "}
+              <p className="mt-4">{book.description}</p>
               <p className="text-gray-600 mb-1">Author: {book.author}</p>
               <p className="text-gray-600 mb-1">Genre: {book.genre}</p>
-              <p className="text-gray-600 mb-1">ISBN : {book.isbn}</p>
+              <p className="text-gray-600 mb-1">ISBN: {book.isbn}</p>
               <p className="text-gray-600 mb-1">
                 Publication Date: {book.publicationDate}
               </p>

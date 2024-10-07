@@ -13,20 +13,5 @@
       "password": "1234"
     }
   ],
-  "books": [
-    {
-      "id": "d21a",
-      "title": "A Court of Mist and Fury",
-      "author": "c",
-      "genre": "Fantasy",
-      "isbn": "978-1619634442",
-      "publicationDate": "2024-11-02",
-      "description": "halksjdhlkajshdlakjsdhlksjhd sjdhjsahdalksjdhalskjdhslkjdhalsjdhk ashdlaksjdh",
-      "imageUrl": "https://covers.openlibrary.org/b/id/14821825-L.jpg",
-      "isBorrowable": true,
-      "borrowDuration": 2,
-      "subject": "Science Fiction",
-      "status": "borrow"
-    }
-  ]
+  "books": []
 }

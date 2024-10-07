@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Header from "./components/Header";
 import AddBook from "./components/AddBook";
+import EditBook from "./components/EditBook";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -64,6 +65,10 @@ function App() {
           <Route
             path="/add-book"
             element={isAuthenticated ? <AddBook /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/edit-book"
+            element={isAuthenticated ? <EditBook /> : <Navigate to="/login" />}
           />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
