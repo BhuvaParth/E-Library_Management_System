@@ -12,5 +12,20 @@
       "email": "user@gmail.com",
       "password": "1234"
     }
+  ],
+  "cardData": [
+    {
+      "id": "d21a",
+      "title": "A Court of Mist and Fury",
+      "author": "c",
+      "genre": "Fantasy",
+      "isbn": "978-1619634442",
+      "publicationDate": "2024-11-02",
+      "description": "A Court of Mist and Fury follows Feyre Archeron as she navigates the complexities of her new life in the Night Court after her harrowing experiences Under the Mountain. Struggling with trauma and the weight of her choices, she discovers newfound power and passion, forging deep connections with allies and confronting old enemies. The story is a blend of romance, betrayal, and the quest for self-discovery amidst a backdrop of political intrigue and magical conflict",
+      "imageUrl": "https://covers.openlibrary.org/b/id/14821825-L.jpg",
+      "isBorrowable": true,
+      "borrowDuration": 2,
+      "subject": "Science Fiction"
+    }
   ]
 }
