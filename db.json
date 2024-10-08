@@ -26,6 +26,45 @@
       "publicationDate": "2024-10-01",
       "subject": "infonew",
       "status": "borrow"
+    },
+    {
+      "id": "3zkohrbfy",
+      "imageUrl": "https://covers.openlibrary.org/b/id/14818882-L.jpg",
+      "title": "50 śeḍsa ôpha gre",
+      "description": "viśva meṃ sarvādhika bikrī vālā upanyāsa\n",
+      "author": "Naī Dillī",
+      "genre": "Naī Dillī",
+      "isbn": "9350835614",
+      "bookType": "business",
+      "publicationDate": "2024-10-23",
+      "subject": "new",
+      "status": "borrow"
+    },
+    {
+      "id": "md4wn2u6d",
+      "imageUrl": "https://ia801306.us.archive.org/view_archive.php?archive=/4/items/olcovers494/olcovers494-L.zip&file=4941345-L.jpg",
+      "title": "Appleby on Ararat",
+      "description": "1st Perennial Library ed.\n",
+      "author": "Perennial library",
+      "genre": "Perennial library",
+      "isbn": "0060806486",
+      "bookType": "education",
+      "publicationDate": "2024-10-06",
+      "subject": "english",
+      "status": "borrow"
+    },
+    {
+      "id": "zbqjl8u1o",
+      "imageUrl": "https://ia903003.us.archive.org/view_archive.php?archive=/25/items/olcovers663/olcovers663-L.zip&file=6633571-L.jpg",
+      "title": "Treasure",
+      "description": "A violent rise of fundamentalism in Mexico and Egypt has the United States captive inside its own borders, but when the Egyptian Secretary General of the United Nations survives a murderous plane crash in Greenland, Dirk Pitt is pulled into the storm.\n\n",
+      "author": "New York",
+      "genre": "New York",
+      "isbn": "0671671138",
+      "bookType": "entertainment",
+      "publicationDate": "2024-10-26",
+      "subject": "any",
+      "status": "borrow"
     }
   ]
 }
